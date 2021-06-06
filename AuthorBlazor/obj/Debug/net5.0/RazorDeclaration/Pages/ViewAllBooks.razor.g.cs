@@ -119,7 +119,7 @@ using TestExam_297125_Exam_S21.Models;
         bool response = await BookManager.removeBook(bookIsbn);
         if (response)
         {
-            NavigationManager.NavigateTo("/ViewAllBooks");
+            Authors = await AuthorManager.getAuthors();
         }
     }
 
