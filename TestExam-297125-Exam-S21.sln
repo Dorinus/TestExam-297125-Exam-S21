@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestExam-297125-Exam-S21", "TestExam-297125-Exam-S21\TestExam-297125-Exam-S21.csproj", "{99636C1A-0B83-42B7-A172-F3D6E58A9856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorBlazor", "AuthorBlazor\AuthorBlazor.csproj", "{BF9978ED-71AC-41C9-B929-2D14A3E7C49B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99636C1A-0B83-42B7-A172-F3D6E58A9856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99636C1A-0B83-42B7-A172-F3D6E58A9856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99636C1A-0B83-42B7-A172-F3D6E58A9856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99636C1A-0B83-42B7-A172-F3D6E58A9856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF9978ED-71AC-41C9-B929-2D14A3E7C49B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF9978ED-71AC-41C9-B929-2D14A3E7C49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF9978ED-71AC-41C9-B929-2D14A3E7C49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF9978ED-71AC-41C9-B929-2D14A3E7C49B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

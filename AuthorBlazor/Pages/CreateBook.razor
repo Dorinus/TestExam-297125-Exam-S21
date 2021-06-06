@@ -1,0 +1,72 @@
+@page "/CreateBook"
+@using TestExam_297125_Exam_S21.Models
+@using AuthorBlazor.Data
+@using Microsoft.AspNetCore.Identity
+@inject NavigationManager NavigationManager
+@inject IAuthorManager AuthorManager
+@inject IBookManager BookManager
+
+<h3>Create Book</h3>
+
+
+<select @bind="AuthorId">
+    @if (Authors != null)
+    {
+
+        @foreach (var author in Authors)
+        {
+            <option value="@author.Id">@author.Id<text>. </text> @author.FirstName @author.LastName</option>
+        }
+    
+    }
+</select>
+
+
+<EditForm Model="@Book" OnValidSubmit="@CreateNewBook">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="form-group"> ISBN:<br/> <InputNumber rows="4" @bind-Value="Book.ISBN"/> </div>
+    <div class="form-group"> Title:<br/> <InputText rows="4" @bind-Value="Book.Title"/> </div>
+    <div class="form-group"> Genre:<br/> <InputText rows="4" @bind-Value="Book.Genre"/> </div>
+    <div class="form-group"> Publication Year:<br/> <InputNumber rows="4" @bind-Value="Book.PublicationYear"/> </div>
+    <div class="form-group"> Number Of Pages:<br/> <InputNumber rows="4" @bind-Value="Book.NumOfPages"/> </div>
+    <p class="actions">
+        <button class="btn btn-outline-dark" type="submit">Create Book</button>
+    </p>
+</EditForm>
+
+
+@code {
+    IList<Author> Authors = new List<Author>();
+    Book Book = new Book();
+    int AuthorId ;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Authors = await AuthorManager.getAuthors();
+        foreach (var author in Authors)
+        {
+            Console.WriteLine(author.FirstName);
+            Console.WriteLine(author.Id);
+        }
+    }
+
+
+    private async void CreateNewBook()
+    {
+        try
+        {
+            bool response = await BookManager.AddBook(Book, AuthorId);
+            if (response)
+            {
+                NavigationManager.NavigateTo("/");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+}

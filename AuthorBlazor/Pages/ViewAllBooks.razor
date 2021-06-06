@@ -1,0 +1,74 @@
+@page "/ViewAllBooks"
+@using AuthorBlazor.Data
+@using TestExam_297125_Exam_S21.Models
+@inject NavigationManager NavigationManager
+@inject IAuthorManager AuthorManager
+@inject IBookManager BookManager
+
+
+<h3>View All Books</h3>
+
+@if (Authors == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else if (!Authors.Any())
+{
+    <p>
+        <em>No Books exist in the system. Or something went wrong</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th> <th>PubYear</th> <th>NumbOfPages</th> 
+            <th>AuthorFirstName</th> <th>AuthorLastName</th><th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var author in  Authors)
+        {
+
+            foreach (var book in author.Books)
+            {
+                <tr>
+                    <td>@book.Title</td> <td>@book.PublicationYear</td> <td>@book.NumOfPages</td> <td>@author.FirstName</td>
+                    <td>@author.LastName</td>
+                    <td>
+                        <button @onclick="@(() => RemoveBook(book.ISBN))">
+                            <i class="oi oi-trash" style="color:red"/>
+                        </button>
+                    </td>
+
+                </tr>
+            }
+            
+        }
+        </tbody>
+    </table>
+
+}
+
+
+@code {
+    private IList<Author> Authors;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Authors = await AuthorManager.getAuthors();
+    }
+
+    private async void RemoveBook(int bookIsbn)
+    {
+        bool response = await BookManager.removeBook(bookIsbn);
+        if (response)
+        {
+            Authors = await AuthorManager.getAuthors();
+        }
+    }
+
+}
